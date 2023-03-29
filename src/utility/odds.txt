@@ -1,0 +1,136 @@
+// const findCurrentRow = (data: ParamTypes) => {
+//     const {rows, row, number, stateFuncs} = data
+//     const [setRow1, setRow2, setRow3, setRow4, setRow5] = stateFuncs
+//     const [row1, row2, row3, row4, row5] = rows
+
+//     if(row === 1){
+//        const row1Data = [...row1]
+//        if(row1Data.length === 0){
+//          row1Data.push(number)
+//          setRow1(row1Data.sort())
+//          return
+//        }
+//        if(row1Data.length > 0){
+//          const numberIndex = row1Data.indexOf(number)
+//           if(numberIndex === -1){
+//             row1Data.push(number)
+//           }else{
+//             row1Data.splice(numberIndex, 1)
+//           }
+//           setRow1(row1Data.sort())
+//        }       
+//     }
+//     if(row === 2){
+//         const row2Data = [...row2]
+//         if(row2Data.length === 0){
+//           row2Data.push(number)
+//           setRow2(row2Data.sort())
+//           return
+//         }
+//         if(row2Data.length > 0){
+//           const numberIndex = row2Data.indexOf(number)
+//            if(numberIndex === -1){
+//              row2Data.push(number)
+//            }else{
+//              row2Data.splice(numberIndex, 1)
+//            }
+//            setRow2(row2Data.sort())
+//         }
+//     }
+//     if(row === 3){
+//         const row3Data = [...row3]
+//         if(row3Data.length === 0){
+//           row3Data.push(number)
+//           setRow3(row3Data.sort())
+//           return
+//         }
+//         if(row3Data.length > 0){
+//           const numberIndex = row3Data.indexOf(number)
+//            if(numberIndex === -1){
+//              row3Data.push(number)
+//            }else{
+//              row3Data.splice(numberIndex, 1)
+//            }
+//            setRow3(row3Data.sort())
+//         }
+//     }
+//     if(row === 4){
+//         const row4Data = [...row4]
+//        if(row4Data.length === 0){
+//          row4Data.push(number)
+//          setRow4(row4Data.sort())
+//          return
+//        }
+//        if(row4Data.length > 0){
+//          const numberIndex = row4Data.indexOf(number)
+//           if(numberIndex === -1){
+//             row4Data.push(number)
+//           }else{
+//             row4Data.splice(numberIndex, 1)
+//           }
+//           setRow4(row4Data.sort())
+//        }
+//     }
+//     if(row === 5){
+//         const row5Data = [...row5]
+//         if(row5Data.length === 0){
+//           row5Data.push(number)
+//           setRow5(row5Data.sort())
+//           return
+//         }
+//         if(row5Data.length > 0){
+//           const numberIndex = row5Data.indexOf(number)
+//            if(numberIndex === -1){
+//              row5Data.push(number)
+//            }else{
+//              row5Data.splice(numberIndex, 1)
+//            }
+//            setRow5(row5Data.sort())
+//         }
+//     }
+
+// }
+
+// const findCurrentRow = (data: ParamTypes) => {
+//   const { rows, row, number, stateFuncs } = data;
+//   const [setRow1, setRow2, setRow3, setRow4, setRow5] = stateFuncs
+//   const rowFunctions = [setRow1, setRow2, setRow3, setRow4, setRow5];
+//   const updatedRows = rows.map((currentRow, rowIndex) => {
+//     if (rowIndex === row - 1) {
+//       const newRow = [...currentRow];
+//       const numberIndex = newRow.indexOf(number);
+//       if (numberIndex === -1) {
+//         newRow.push(number);
+//       } else {
+//         newRow.splice(numberIndex, 1);
+//       }
+//       return newRow.sort();
+//     }
+//     return currentRow;
+//   });
+
+//   updatedRows.forEach((updatedRow, rowIndex) => {
+//     rowFunctions[rowIndex](updatedRow);
+//   });
+// }
+
+const findCurrentRow = (data: ParamTypes) => {
+    const {rows, row, number, stateFuncs} = data;
+    const [setRow1, setRow2, setRow3, setRow4, setRow5] = stateFuncs;
+    
+    const currentRow = rows[row - 1];
+    const newData = currentRow.includes(number) ? currentRow.filter(n => n !== number) : [...currentRow, number];
+    const setRowFunc = [setRow1, setRow2, setRow3, setRow4, setRow5][row - 1];
+    setRowFunc(newData.sort());
+};
+
+
+
+const [row1, row2, row3, row4, row5] = rows
+
+    return row === 1  && row1.indexOf(number) !== -1 ? 'selected'
+           :row === 2 && row2.indexOf(number) !== -1 ? 'selected'
+           :row === 3 && row3.indexOf(number) !== -1 ? 'selected'
+           :row === 4 && row4.indexOf(number) !== -1 ? 'selected'
+           :row === 5 && row5.indexOf(number) !== -1 ? 'selected'
+           : null
